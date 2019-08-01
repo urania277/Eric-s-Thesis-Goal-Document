@@ -39,6 +39,7 @@
 \textbf{Student:} Eric Wulff, Lund University
 
 \textbf{Principal supervisor:} Caterina Doglioni, Lund University, ATLAS Collaboration
+\textbf{Secondary supervisors:} Antonio Boveia, Ohio State University, ATLAS Collaboration; Lukas Heinrich, CERN, ATLAS Collaboration
 
 \textbf{Preliminary start and end dates:} 01/09/2019 - 31/01/2020
 
@@ -46,42 +47,57 @@
 
 \subsection{CERN}
 
-The European Organisation for Nuclear Research (CERN) is one of the largest research laboratories in the world and has as its mission to conduct world class scientific research in fundamental physics as well as to push the frontiers of science and technology. The main scientific tools used at CERN are particle accelerators and detectors. In fact, CERN is home to the largest particle accelerator in the world, the Large Hadron Collider (LHC), perhaps best known for having been used to discover the Higgs boson~\cite{higgs_discovery}.
+The European Organisation for Nuclear Research (CERN) is one of the largest research laboratories in the world and has as its mission to conduct world-class scientific research in fundamental physics as well as to push the frontiers of science and technology. The main scientific tools used at CERN are particle accelerators and detectors. In fact, CERN is home to the largest particle accelerator in the world, the Large Hadron Collider (LHC), perhaps best known for having been used to discover the Higgs boson~\cite{higgs_discovery}.
 
-The high technological demands of building particle accelerators for use in particle physics research result in CERN pushing the frontiers of technology, often to the benefit of society at large. As an example, the perhaps most important invention in human history, the world wide web, was first imagined at CERN \cite{www}. Medical diagnosis and treatment are other areas where CERN scientists have helped make big technological advances. Medical applications that rely on technology first developed for particle physics research includes PET scans, MRI scans (for diagnosis) and hadron therapy (cancer treatment).
+The high technological demands of building particle accelerators for use in particle physics research result in CERN pushing the frontiers of technology, often to the benefit of society at large. As an example, the idea for perhaps one of the most important inventions in human history, the World Wide Web, was first imagined at CERN \cite{www}. Medical diagnosis and treatment are other areas where CERN scientists have helped make big technological advances. Medical applications that rely on technology first developed for particle physics research includes PET scans, MRI scans (for diagnosis) and hadron therapy (cancer treatment).
 
-\subsection{The ATLAS experiment}
+\subsection{The ATLAS experiment and its trigger system}
 
-ATLAS~\cite{Collaboration_2008} stands for A Toroidal LHC ApparatuS and is the largest experiment at CERN. It is a general purpose particle detector designed to detect as much as possible of the particles that gets created in the proton-proton collisions produced by the LHC.
+ATLAS~\cite{Collaboration_2008} stands for A Toroidal LHC ApparatuS and is the largest experiment at CERN. It is a general purpose particle detector designed to detect the particles that are created in the proton-proton collisions produced by the LHC.
 
-There are approximately 1.7 billion collisions occurring inside the ATLAS detector each second~\cite{trigger_das}. Most of these collisions, however, are not interesting and therefore will not be sent to storage. In addition, current technological limitations make it impossible to store the enormous amount of data that gets produced. Hence, ATLAS uses a so called \emph{trigger system}, consisting of two levels, one hardware level and one software level. The hardware trigger comes first and saves at most $10^5$ collisions per second. Thereafter the software trigger performs additional analysis and picks out about $10^3$ events per second which are sent to a data storage system for later analysis~\cite{trigger_das}.
+There are approximately 1.7 billion collisions occurring inside the ATLAS detector, each second~\cite{trigger_das}. Most of these collisions are not interesting and therefore will not be sent to storage. In addition, current technological limitations make it impossible to store the enormous amount of data that gets produced, even in the cases where they are interesting. Hence, ATLAS uses a so called \emph{trigger system}, consisting of two levels, one hardware level and one software level. The first hardware trigger and saves at most $10^5$ collision events per second. Thereafter the software trigger performs an additional analysis and picks out about $10^3$ events per second which are sent to a data storage system for later analysis~\cite{trigger_das}.
 
-Even though most of the collision events gets thrown away by the trigger system the remaining data that is saved quickly adds up to enormous amounts. Therefore it is of high interest to compress this data as much as possible without loosing valuable information.
+This data reduction impairs the potential of discovering new particles that are buried in high-rate backgrounds. Therefore, a new technique called "Trigger Level Analysis" has been brought forward by the Lund and OSU groups among others, to only record high-level information necessary to perform searches for those new particles. Since the size of each event is smaller, more events can be recorded. 
 
-If we manage to store events in a smaller space we can afford to include more information in each event, for instance not only the jets as a whole but perhaps also their constituents could be saved. This would allow for physics analysis not previously possible such as to look for new particles, e.g. dark matter, in the substructure of jets.
+A further reduction of the current event size will allow us to perform searches that were not previously possible, for example for low-mass dark matter mediators
+%\cite{[https://arxiv.org/abs/1503.05916]}. %fix citation 
+It will also be interesting to treat this study as a proof-of-principle for future data compression techniques for the ATLAS experiment: for the planned experimental upgrades in 2026, this technique may help solving the problem of needing much more storage space than in the past due to the increase of the size of the dataset, as shown in Fig.
+%insert, understand & caption this picture: https://twiki.cern.ch/twiki/pub/AtlasPublic/ComputingandSoftwarePublicResults/diskHLLHC_noold.png
 
 \section{Objectives and research questions}
 
-The objective is to compress experimental data from the ATLAS detector without loosing important information. It is desirable to save as much final-state information as possible while filtering out noise.
+The aim of this project is to understand whether we can to further reduce the size of those collision events, using machine learning techniques for data compression, and compare the performance of these new techniques with standard compression techniques. This has never been tried before within the ATLAS experiment, and it is an interesting forward-looking study for future experiments as well. 
+A byproduct of this project is also that we %I? do you talk in first person?
+will gain expertise in cutting-edge machine learning techniques, and learn to use them in the context of both data compression and detection of anomalous events. 
 
 \section{Approach and method}
 
-A machine learning (ML) approach will be used to complete the objective, specifically a method using so called autoencoder (AE) neural networks. In short an AE is a neural network which tries to implement an approximation to the identity, $f(x) \approx x$, by using one or more hidden layers with smaller size than the input and output layers. If this is possible, it means that all the information necessary to reproduce the input, $x$, is contained in the hidden layer. Consequently the information has been compressed. The idea is then to only save this hidden layer representation along with the neural network that can recreate the original data.
+A machine learning (ML) approach will be used to complete the objective, specifically a method using so called autoencoder (AE) neural networks. In short an AE is a neural network which tries to implement an approximation to the identity, $f(x) \approx x$, by using one or more hidden layers with smaller size than the input and output layers. If this is possible, it means that all the information necessary to reproduce the input, $x$, is contained in the hidden layer, and the data size has been compressed. The idea is then to only save this hidden layer representation along with the neural network that can recreate the original data. 
 
-The reasoning above relied on the hidden layer being smaller than the input and output layers in order to achieve compression. This is however not necessary if one instead impose some other restraint on the network, for instance that the average activation of neurons in the network should be lower than a given number~\cite{ng_autoenc}.
+The reasoning above relies on the hidden layer being smaller than the input and output layers in order to achieve this compression. This is however not necessary if one instead impose some other constraint on the network, for instance that the average activation of neurons in the network should be lower than a given number~\cite{ng_autoenc}. %CD: I don't understand what point you want to make here? 
+
+Moreover, an AE can be used to detect anomalous data in a series. This is the most common use of AEs: if trained on "known" data, when presented with "unknown" data it will not be able to provide a faithful representation at the level of the output layer. One can then rely on the quality of the reconstruction to detect events that do not belong to the training sample. (see 
+%\cite{https://www.datascience.com/blog/fraud-detection-with-tensorflow}
+for an example in fraud detection). We will start with a tutorial with this use case before proceeding to investigate the compression properties of these algorithms. . 
 
 \section{Disciplinary foundation}
-It has been shown that AEs can be used to reduce the dimensionality of data \cite{hinton}. 
+
+It has been shown that AEs can be used to reduce the dimensionality of data \cite{hinton}. We will also test and gain expertise on standard compression techniques used in the ATLAS collaboration %\cite{https://indico.cern.ch/event/725169/contributions/2983338/attachments/1639555/2617474/180425_merrenst_SPOT.pdf}. fix citation
+before proceeding with the autoencoder tests. 
 
 \section{Contribution to the development of knowledge}
 
-It will be the first time AEs are used to compress data within the ATLAS collaboration. The project will shed light on how useful AEs can be for compression of experimental high energy physics data.
+This is the first time AEs are used to compress data within the ATLAS collaboration. The project will shed light on how useful AEs can be for compression of experimental high energy physics data. Moreover, the preliminary studies will show how AEs can be used not only for data compression but also for anomaly detection. 
 
 \section{Required resources}
 
 \begin{itemize}
-    \item NVIDIA GPU for training neural networks
-    \item Access to experimental data from ATLAS
+    \item Jupyter notebook within the SWAN CERN interface
+%cite{https://swan.web.cern.ch}    
+    \item Simulated data from LHC experiments 
+%\cite{https://home.cern/news/news/knowledge-sharing/cms-releases-open-data-machine-learning}
+    and real data from ATLAS experiment for compression;
+    \item LUNARC/CERN-based cluster for training neural network
 \end{itemize}
 
 
